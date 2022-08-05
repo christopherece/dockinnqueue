@@ -8,3 +8,6 @@ def index(request):
         'obj' : obj
     }
     return render(request, 'dashboard/index.html', context)
+
+def monitor(request):
+    return render(request, 'dashboard/monitor.html')

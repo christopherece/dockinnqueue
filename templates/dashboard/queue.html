@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
+
+
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <div class="pt-8 sm:justify-start sm:pt-0" style="padding: 0 10px">
+                   
+            <h1>Welcome to <strong>Dockin Queue</strong></h1>
+            <h5>Please choose one of the following</h5>
+            
+        </div>
+<p></p>
+       
+
+        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+            <div class="container" style="padding:10px 10px;">
+                <div class="card" style="padding: 10px;">
+                    <a style="text-decoration: none; color: black;" href="#"  data-toggle="modal" data-target="#hardware_modal">
+                        <div class="p-6">
+                            <div class="center-text">
+                                <i class="fa fa-hard-drive" style="font-size: 64px;"></i>
+                                <h3>Hardware Issue</h3>
+                            </div>
+
+                        <div class="ml-12">
+                            <div class="mt-2 text-sm">
+                                <p style="text-align: justify;">
+                                    Use this option if you're having an issue with ICT related hardware which includes but is not limited to PCs, laptops, monitors, printers, mobile handsets, smartphones, tablets, audio-visual equipment and ICT peripherals. Please include as much information as possible about the fault and any errors you may be receiving.
+                                </p>
+                            </div>
+                        </div>
+                        </div>
+                    </a>
+                </div>
+               
+                <div class="card">
+                <a style="text-decoration: none;" href="#"  data-toggle="modal" data-target="#software_modal">
+                <div class="p-6">
+                    <div class="flex items-center">
+                    <i class="feather-42" data-feather="upload-cloud"></i>
+                        <div class="ml-4 text-lg leading-7 font-semibold">Software Issue</div>
+                    </div>
+
+                    <div class="ml-12">
+                    <div class="mt-2 text-sm">
+                            <p>Use this option if you're having an issue with any software, application or website. Please include as much information as possible including screenshot attachments if relevant.</p>
+                            <p>Please note if you have a SAP issue you can raise a specific request <a href="https://aklc.service-now.com/awhina?id=sc_cat_item&sys_id=1e34ef214f36530065cb46501310c79f" target=_blank>here</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                </div>
+             
+                <div class="card">
+                <a style="text-decoration: none;" href="#"  data-toggle="modal" data-target="#phone_modal">
+                <div class="p-6">
+                    <div class="flex items-center">
+                    <i class="feather-42" data-feather="phone"></i>
+                        <div class="ml-4 text-lg leading-7 font-semibold">Phone Issue</div>
+                    </div>
+
+                    <div class="ml-12">
+                    <div class="mt-2 text-sm">
+                            <p>
+                            Use this option if you're having an issue with any issue with you mobile phone like changing mobile phone, request sim swap, request data plan, request for new softphone and othe phone related queries.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                </div>
+            
+                <div class="card">
+                <a style="text-decoration: none;" href="#"  data-toggle="modal" data-target="#other_modal">
+                <div class="p-6">
+                    <div class="flex items-center">
+                    <i class="feather-42" data-feather="clipboard"></i>
+                        <div class="ml-4 text-lg leading-7 font-semibold">
+                                Account Related Issues
+                            </div>
+                    </div>
+
+                    <div class="ml-12">
+                    <div class="mt-2 text-sm">
+                            <p>
+                            Use this option for any acount related issues.
+                                e.q Password reset, account locked, account activation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+            <div class="text-center text-sm text-gray-500 sm:text-left">
+                <div class="flex items-center">
+                    
+                <i data-feather="phone"></i>
+
+
+                    <a style="text-decoration: none;" href="#" class="ml-1 underline">
+                        Service Desk: 093-55-55-55
+                    </a>
+                </div>
+            </div>
+
+            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                Copyright &copy AucklandCouncil 2022
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MOdal -->
+
+ <!-- HArdware Modal -->
+
+ <div id="hardware_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+            <!-- For Hardware -->
+            <div class="hardware_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="hardware" action="" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="hardware" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+                </div>
+
+    <!-- Software Modal -->
+    <div id="software_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+        <!-- Software content-->
+            <!-- For Software -->
+            <div class="software_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="software" action="" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="software" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    <!-- Phone Modal -->
+    <div id="phone_modal" class="modal fade" role="dialog">
+
+        <div class="modal-dialog">
+
+        <!-- Phone content-->
+            <!-- For Phone -->
+            <div class="phone_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="phone" action="" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="phone" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- Other Modal -->
+    <div id="other_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+        <!-- Software content-->
+            <!-- For Software -->
+            <div class="other_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="software" action="" method="POST">
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="Account" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- EndModal -->
+
+
+{% endblock %}

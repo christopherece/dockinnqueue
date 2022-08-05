@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'qr_code',
+    'qrcode',
+    'queues.apps.QueuesConfig',
     'dashboards.apps.DashboardsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
