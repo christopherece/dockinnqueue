@@ -5,4 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.addqueue, name='addqueue'),
+    path('submitqueue', views.submitqueue, name='submitqueue'),
+
 ]

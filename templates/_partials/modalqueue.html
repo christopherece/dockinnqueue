@@ -1,0 +1,246 @@
+<!-- MOdal -->
+
+ <!-- HArdware Modal -->
+
+ <div id="hardware_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+            <!-- For Hardware -->
+            <div class="hardware_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="hardware" action="{% url 'submitqueue' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="hardware" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            
+                            <div>
+                                <input type="hidden" value="New" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Software Modal -->
+    <div id="software_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+        <!-- Software content-->
+            <!-- For Software -->
+            <div class="software_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="software" action="{" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="software" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    <!-- Phone Modal -->
+    <div id="phone_modal" class="modal fade" role="dialog">
+
+        <div class="modal-dialog">
+
+        <!-- Phone content-->
+            <!-- For Phone -->
+            <div class="phone_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="phone" action="" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="phone" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- Other Modal -->
+    <div id="other_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+        <!-- Software content-->
+            <!-- For Software -->
+            <div class="other_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please fill up the form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form name="software" action="" method="POST">
+                            
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name: </label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Short Description</label>
+                                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                            </div>
+
+                            <label for="basic-url">Awhina No:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon3">RITM</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="ritm" id="basic-url" aria-describedby="basic-addon3">
+                                </div>
+                            <div>
+                                <input type="hidden" value="Account" name="type">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Not Assigned" name="technician">
+                            </div>
+                            <div>
+                                <input type="hidden" value="Active" name="status">
+                            </div>
+                            <!-- <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+</div>
+
+<!-- EndModal -->

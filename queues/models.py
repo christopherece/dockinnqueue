@@ -15,9 +15,9 @@ class Queue(models.Model):
     )
 
     STATUS_TYPE = (
-        ('done','Done'),
-        ('inprogress','In Progress'),
-        ('new','New'),
+        ('Done','Done'),
+        ('In Progress','In Progress'),
+        ('New','New'),
     )
 
     name = models.CharField(max_length=200)
@@ -27,7 +27,7 @@ class Queue(models.Model):
     ritm = models.CharField(max_length=200, blank=True, null=True)
     technician = models.CharField(max_length=200, blank=True, null=True)
     comment = models.TextField(null=True, blank=True)
-    queue_id = models.IntegerField(blank=True, null=True)
+    queue_id = models.IntegerField(default=0)
     is_done = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
