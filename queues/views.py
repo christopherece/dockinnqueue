@@ -51,6 +51,7 @@ def submitqueue(request):
         type = request.POST['type']
         status = request.POST['status']
         ritm = request.POST['ritm']
+        technician = request.POST['technician']
 
         if Queue.objects.exists():
             queueList = Queue.objects.filter(status='Active').count()
@@ -67,6 +68,7 @@ def submitqueue(request):
         status = status,
         ritm = 'RITM'+ritm,
         queue_id = addOne,
+        technician = technician,
     )
 
     myqueue.save()

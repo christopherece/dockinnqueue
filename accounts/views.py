@@ -63,13 +63,11 @@ def logout(request):
         return redirect('login')
 
 def dashboard(request):
-    queueLists = Queue.objects.all()
-    usersList = User.objects.all()
+    queueLists = Queue.objects.filter(technician__contains = request.user.username).values() | Queue.objects.filter(technician__startswith = 'Not Assigned').values()
+    print(request.user.username)
     context = {
         'queueLists': queueLists,
-        'usersList':usersList
     }
     return render(request, 'accounts/dashboard.html', context)
-
 
     
