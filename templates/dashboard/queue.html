@@ -12,7 +12,7 @@
                 <h1>Welcome to <strong>Dockin Queue</strong></h1>
                 <h5>Please choose one of the following</h5>
                 <p></p>
-                {% include 'messages/alert.html' %}
+                {% include 'messages/alertqueue.html' %}
 
             </div>
         </div>
@@ -25,7 +25,7 @@
                     <a style="text-decoration: none; color: black;" href="#"  data-toggle="modal" data-target="#hardware_modal">
                         <div class="p-6">
                             <div class="center-text">
-                                <i class="fa fa-hard-drive" style="font-size: 64px;"></i>
+                                <i class="fa fa-laptop" style="font-size: 32px;"></i>
                                 <h3>Hardware Issue</h3>
                             </div>
 
@@ -44,7 +44,7 @@
                     <a style="text-decoration: none; color: black;" href="#"  data-toggle="modal" data-target="#software_modal">
                 <div class="p-6">
                     <div class="flex items-center">
-                        <i class="fa fa-hard-drive" style="font-size: 64px;"></i>
+                        <i class="fa fa-cloud" style="font-size: 32px;"></i>
                         <div class="ml-4 text-lg leading-7 font-semibold">Software Issue</div>
                     </div>
 
@@ -64,7 +64,7 @@
                     <a style="text-decoration: none; color: black;" href="#"  data-toggle="modal" data-target="#phone_modal">
                 <div class="p-6">
                     <div class="flex items-center">
-                        <i class="fa fa-hard-drive" style="font-size: 64px;"></i>
+                        <i class="fa fa-phone" style="font-size: 32px;"></i>
                         <div class="ml-4 text-lg leading-7 font-semibold">Phone Issue</div>
                     </div>
 
@@ -83,7 +83,7 @@
                     <a style="text-decoration: none; color: black;" href="#"  data-toggle="modal" data-target="#other_modal">
                 <div class="p-6">
                     <div class="flex items-center">
-                        <i class="fa fa-hard-drive" style="font-size: 64px;"></i>
+                        <i class="fa fa-user" style="font-size: 32px;"></i>
                         <div class="ml-4 text-lg leading-7 font-semibold">
                                 Account Related Issues
                             </div>
@@ -118,7 +118,7 @@
             </div>
 
             <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                Copyright &copy AucklandCouncil 2022
+                Copyright &copy AucklandCouncil 2022 | <a href="{% url 'login' %}">LogIn</a> | <a href="{% url 'register' %}">Register</a>
             </div>
         </div>
     </div>

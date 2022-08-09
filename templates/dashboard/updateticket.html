@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <div class="container">
+      <a href="{% url 'dashboard' %}" class="navbar-brand">Dockinn Queue Admin</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li class="nav-item px-2">
+            <a href="{% url 'dashboard' %}" class="nav-link active">Dashboard</a>
+          </li>
+          <li class="nav-item px-2">
+            <a href="#" class="nav-link">Print Report</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            <li 
+              {% if 'dashboard' in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {% endif %}
+              >
+              <a href="{% url 'dashboard' %}" class="nav-link">
+                <i class="fas fa-user"></i> Welcome {{ user.username }}
+              </a>
+              
+            </li>
+            <li class="nav-item">
+              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                <i class="fas fa-user-times"></i> Logout
+              </a>
+              <form action="{% url 'logout' %}" method="POST" id="logout">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
+            </li>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+</nav>
+
+  <!-- ACTIONS -->
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+            <div class="card text-center bg-primary text-white mb-3">
+                <div class="card-body">
+                  <h3>Hardware</h3>
+                  <h4 class="display-6">
+                    <i class="fas fa-pencil-alt"></i> 6
+                  </h4>
+                  <a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center bg-success text-white mb-3">
+                <div class="card-body">
+                  <h3>Software</h3>
+                  <h4 class="display-6">
+                    <i class="fas fa-folder"></i> 4
+                  </h4>
+                  <a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
+                </div>
+              </div>            
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center bg-warning text-white mb-3">
+                <div class="card-body">
+                  <h3>Phone</h3>
+                  <h4 class="display-6">
+                    <i class="fas fa-users"></i> 4
+                  </h4>
+                  <a href="users.html" class="btn btn-outline-light btn-sm">View</a>
+                </div>
+              </div>            
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center bg-warning text-white mb-3">
+                <div class="card-body">
+                  <h3>Account</h3>
+                  <h4 class="display-6">
+                    <i class="fas fa-users"></i> 4
+                  </h4>
+                  <a href="users.html" class="btn btn-outline-light btn-sm">View</a>
+                </div>
+              </div>            
+        </div>
+        
+
+          
+
+          
+
+          
+        <!-- <div class="col-md-3">
+          <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addPostModal">
+            <i class="fas fa-plus"></i> Add Post
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addCategoryModal">
+            <i class="fas fa-plus"></i> Add Category
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addUserModal">
+            <i class="fas fa-plus"></i> Add User
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+
+  {% include 'messages/alert.html' %}
+
+  <section id="posts">
+    <div class="container">
+        <form name="updateTicket" action="{% url 'updatequeue' myqueue.id %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-12">	
+            <div class="row">
+
+              <div class="col-md-6" >		
+                <div class="form-group">
+                  <h5>Description <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                    <input type="text" name="description" class="form-control" value="{{ myqueue.description }}" disabled>  
+                  </div>	 
+                </div>
+              </div><!-- End Col Md-6 -->
+
+              <div class="col-md-6" >		
+                <div class="form-group">
+                  <h5>RITM <span class="text-danger"></span></h5>
+                  <div class="controls">
+                    <input type="text" name="ritm" class="form-control" value="{{ myqueue.ritm }}" disabled>  
+                  </div>	 
+                </div>
+              </div><!-- End Col Md-6 -->
+
+              <div class="col-md-6" >		
+                <div class="form-group">
+                  <h5>Comments <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                    <textarea name="comment" class="form-control">{{myqueue.comment}}</textarea>
+                  </div>	 
+                </div>
+              </div><!-- End Col Md-6 -->
+              
+              <div class="col-md-6" >
+                <div class="form-group">
+                  <h5>Update Ticket <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                    <select name="status"  required="" class="form-control">
+                      <option value="{{myqueue.status}}" selected=>{{myqueue.status}}</option>
+                      <option value="Done">Done</option>
+                      <option value="In Progress">In Progress</option>
+                    </select>
+                  </div>
+                </div>
+              </div> <!-- End Col Md-6 -->
+
+              <div class="col-md-6" >
+                <div class="form-group">
+                  <h5>Technician <span class="text-danger">*</span></h5>
+                  <div class="controls">
+                    <select name="technician"  required="" class="form-control">
+                      {% for user in usersList %}
+                      <option value="{{user.first_name}}" selected=>{{user.first_name}}</option>
+                      
+                      {% endfor %}
+                    </select>
+                  </div>	 
+                </div>
+              </div> <!-- End Col Md-6 -->
+
+              <div class="col-md-6">
+                <input type="submit" class="btn btn-rounded btn-info mb-5" value="Update">
+              </div>
+                    
+            </div> <!-- End Row -->
+          </div>
+        </div>
+        </form>
+    </div>
+  </section>
+{% endblock %}

@@ -1,12 +1,44 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db.models import Max, Q
+from queues.models import Queue
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              HttpResponseRedirect)
+from django.contrib.auth.models import User
+
 
 
 
 from queues.models import Queue
 
 # Create your views here.
+
+def updateticket(request, id):
+    myqueue = Queue.objects.get(id=id)
+    usersList = User.objects.all()
+
+    context = {
+        'myqueue':myqueue,
+        'usersList':usersList
+    }
+    return render(request, 'dashboard/updateticket.html', context)
+
+
+def updatequeue(request, id):
+    obj = Queue.objects.get(id = id)
+    if request.method == 'POST':
+            status = request.POST['status']
+            comment = request.POST['comment']
+            technician = request.POST['technician']
+
+    obj.status = status
+    obj.technician = technician
+    obj.comment = comment
+    obj.save()
+    return redirect('dashboard')
+
 def addqueue(request):
     return render(request, 'dashboard/queue.html')
 
@@ -20,13 +52,11 @@ def submitqueue(request):
         status = request.POST['status']
         ritm = request.POST['ritm']
 
-        queueList = Queue.objects.all().count()
-        print(queueList)
-        if queueList:
-            queueIdMax = Queue.objects.aggregate(Max('queue_id'))
+        if Queue.objects.exists():
+            queueList = Queue.objects.filter(status='Active').count()
+            queueIdMax = Queue.objects.aggregate(Max('queue_id'))['queue_id__max']
             print(queueIdMax)
-            addOne = queueList + 1
-            appendRitm = 'RITM'
+            addOne = queueIdMax + 1
         else:
             addOne = 1
 
@@ -35,12 +65,11 @@ def submitqueue(request):
         description = description,
         type = type,
         status = status,
-        ritm = ritm,
+        ritm = 'RITM'+ritm,
         queue_id = addOne,
     )
 
     myqueue.save()
-    insertedId = queueIdMax
 
-    messages.success(request, 'You are in queue Number {insertedId} ! Thank you and see you')
+    messages.success(request, addOne)
     return redirect('addqueue')

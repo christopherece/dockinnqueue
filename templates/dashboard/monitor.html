@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
 {% load static %}
-{% load qr_code %}
-{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,20 +46,23 @@
                   <th>RITM</th>
                   <th>Type</th>
                   <th>Description</th>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>RITM037624</td>
-                  <td>Hardware Issue</td>
-                  <td>LAptop Battery not charging</td>
+                  {% for queueList in queueLists %}
+                  <td>{{queueList.queue_id}}</td>
+                  <td>{{queueList.ritm}}</td>
+                  <td>{{queueList.type}}</td>
+                  <td>{{queueList.description}}</td>
                   <!-- <td>
                     <a href="details.html" class="btn btn-secondary">
                       <i class="fas fa-angle-double-right"></i> Details
                     </a>
                   </td> -->
                 </tr>
+                {% endfor %}
                 
               </tbody>
             </table>
@@ -74,7 +74,7 @@
             <div class="card-body">
               <h2>Serving No:</h2>
               <h1 class="display-1">
-                10
+                {{queue_id }}
               </h1>
               
             </div>
@@ -141,4 +141,3 @@
 </html>
 
 
-{% endblock %}

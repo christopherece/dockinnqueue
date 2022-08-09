@@ -10,14 +10,14 @@ class Queue(models.Model):
         ('hardware','Hardware Issue'),
         ('software','Software Issue'),
         ('phone','Phone Issue'),
-        ('account','Account Issue'),
+        ('other','Account Issue'),
 
     )
 
     STATUS_TYPE = (
         ('Done','Done'),
         ('In Progress','In Progress'),
-        ('New','New'),
+        ('Active','Active'),
     )
 
     name = models.CharField(max_length=200)
@@ -32,6 +32,9 @@ class Queue(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                     primary_key=True, editable=False)
+
+    class Meta:
+        ordering = ('queue_id', )
 
 
     def __str__(self):
