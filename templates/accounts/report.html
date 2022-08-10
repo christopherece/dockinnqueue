@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/all.css'%}">       
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+ 
+<style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+
+    @page {
+      header: page-header;
+      footer: page-footer;
+      size: letter landscape; margin:2cm;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="text-center">          
+    <img src="{% static 'img/aklclogo.png' %}" alt="" width="220px" >        
+    <h1>Welcome to <strong>Dockinn</strong></h1>  
+
+</div>
+    <htmlpageheader name="page-header">
+      <h2>Auckland Council | ICT </h2>
+    </htmlpageheader>
+
+
+    <table>
+      <tr>
+        <th>
+          <h2>DockInn Queue</h2>
+          
+          <p>Printed by: 
+            {{user}}
+          </p>
+          <p>Prnted Date: {{current_datetime}}</p>
+        </th>
+        <th>
+        <p>Level 28, 135 Albert Street</p>
+        <p>Phone: 093-55-55-55</p>
+        <p>Email: dockinn@aucklandcouncil.govt.nz</p>
+        </th>
+
+      </tr>
+    </table>
+
+    <table>
+      <tr>
+        <th width="5%">#</th>
+        <th width="10%">RITM</th>
+        <th>Name</th>
+        <th width="20%">Description</th>
+        <th width="20%">Comments</th>
+        <th>Type</th>
+        <th width="10%">Technician</th>
+        <th width="10%">Status</th>
+
+      </tr>
+      {% for report in reports %}
+      <tr>
+            <td>{{report.queue_id}}</td>
+            <td>{{report.ritm}}</td>
+            <td>{{report.name}}</td>
+            <td>{{report.description}}</td>
+            <td>{{report.comment}}</td>
+            <td>{{report.type}}</td>
+            <td>{{report.technician}}</td>
+            <td>{{report.status}}</td>
+
+      </tr>
+    {% endfor %}
+    </table>
+
+      <htmlpagefooter name="page-footer">
+      </htmlpagefooter>
+
+</div>
+
+</body>
+</html>
+

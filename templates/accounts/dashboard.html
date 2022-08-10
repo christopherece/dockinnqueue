@@ -13,9 +13,9 @@
           <li class="nav-item px-2">
             <a href="{% url 'dashboard' %}" class="nav-link active">Dashboard</a>
           </li>
-          <li class="nav-item px-2">
+          <!-- <li class="nav-item px-2">
             <a href="#" class="nav-link">Print Report</a>
-          </li>
+          </li> -->
         </ul>
 
         <ul class="navbar-nav ml-auto">
@@ -127,7 +127,20 @@
   <!-- POSTS -->
 
   {% include 'messages/alert.html' %}
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+            <form action="{% url 'generate_pdf' %}" method="GET" class="md-form md-outline input-with-post-icon datepicker" inline="true" target=_blank style="float: left;">
+                <label style="display:block">Pick a Date Range:</label>
+                <input style="border-radius:5px; padding: 3px 5px; width: 190px" placeholder="Select Start Date" type="date" id="startDate" name="startDate" required>
+                <input style="border-radius:5px; padding: 3px 5px; width: 190px" placeholder="Select End Date" type="date" id="endDate" name="endDate" required>
+                <input type="submit" style="margin: 10px 0;" class="btn btn-rounded btn-info" value="Print Report">
+            </form>
+        </div>
+    </div>  
+  </div>
+</div>
+ 
   <section id="posts">
     <div class="container-fluid">
       <div class="row">

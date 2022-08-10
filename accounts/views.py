@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from queues.models import Queue
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def register(request):
@@ -38,6 +39,7 @@ def register(request):
     else:
         return render(request, 'accounts/register.html')
 
+
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -56,12 +58,14 @@ def login(request):
     else:
         return render(request, 'accounts/login.html')
 
+@login_required(login_url='login')
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         messages.success(request, 'You are now log out')
         return redirect('login')
 
+@login_required(login_url='login')
 def dashboard(request):
     queueLists = Queue.objects.filter(technician__contains = request.user.username).values() | Queue.objects.filter(technician__startswith = 'Not Assigned').values()
     print(request.user.username)

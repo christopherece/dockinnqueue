@@ -7,5 +7,6 @@ urlpatterns = [
     path('submitqueue', views.submitqueue, name='submitqueue'),
     path('updateticket/<uuid:id>/', views.updateticket, name='updateticket'),
     path('updatequeue/<uuid:id>/', views.updatequeue, name='updatequeue'),
+    path('generate-pdf/', views.generate_pdf, name='generate_pdf' ),
 
 ]
