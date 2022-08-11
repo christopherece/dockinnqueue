@@ -24,12 +24,7 @@ from queues.models import Queue
 # Create your views here.
 @login_required(login_url='login')
 def generate_pdf(request):
-    # html = '<html><body>To PDF or not to PDF</body></html>'
-    # write_to_file = open('media/test.pdf', "w+b")
-    # result = pisa.CreatePDF(html,dest=write_to_file)
-    # write_to_file.close()
-    # print(result)
-    # return HttpResponse(result.err)
+
     startDate = request.GET.get('startDate')
     endDate = request.GET.get('endDate')
     user = request.user.username
