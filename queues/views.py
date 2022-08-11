@@ -27,10 +27,9 @@ def generate_pdf(request):
 
     startDate = request.GET.get('startDate')
     endDate = request.GET.get('endDate')
-    endDateNew = endDate + timedelta(days=1)
     user = request.user.username
     current_datetime = datetime.now()
-    reports = Queue.objects.filter(created__range=[startDate, endDateNew])
+    reports = Queue.objects.filter(created__range=[startDate, endDate])
     context = {
         'reports':reports,
         'user':user,
