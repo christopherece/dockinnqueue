@@ -67,11 +67,18 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    hardware = Queue.objects.filter(type == 'hardware').count()
+    hardwareCount = Queue.objects.filter(type__contains='hardware').count()
+    softwareCount = Queue.objects.filter(type__contains='software').count()
+    phoneCount = Queue.objects.filter(type__contains='phone').count()
+    accountCount = Queue.objects.filter(type__contains='account').count()
+
     queueLists = Queue.objects.filter(technician__contains = request.user.username).values() | Queue.objects.filter(technician__startswith = 'Not Assigned').values()
     context = {
         'queueLists': queueLists,
-        'hardware':hardware
+        'hardwareCount':hardwareCount,
+        'softwareCount':softwareCount,
+        'phoneCount':phoneCount,
+        'accountCount':accountCount,
     }
     return render(request, 'accounts/dashboard.html', context)
 

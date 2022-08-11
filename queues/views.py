@@ -70,7 +70,6 @@ def updatequeue(request, id):
 def addqueue(request):
     return render(request, 'dashboard/queue.html')
 
-@login_required(login_url='login')
 def submitqueue(request):
     queueIdMax = 0
 
