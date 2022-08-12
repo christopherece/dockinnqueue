@@ -3,7 +3,7 @@
 
 
 .bg {
-  background-image: url('../img/bg.jpg');
+  background-image: url('/static/img/bg.jpg');
   font-family: 'blis-bold', 'Arial', sans-serif;
   background-color: #ffffff;
   color: #00304B;
