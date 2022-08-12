@@ -2,6 +2,16 @@
   color: #fff !important; }
 
 
+.bg {
+  background-image: url('../img/bg.jpg');
+  font-family: 'blis-bold', 'Arial', sans-serif;
+  background-color: #ffffff;
+  color: #00304B;
+  background-position: center;
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+}
 
 .logo {
   width: 80px; }
