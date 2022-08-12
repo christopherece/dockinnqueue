@@ -28,7 +28,7 @@ def generate_pdf(request):
     startDate = request.GET['startDate']
     start = datetime.datetime.strptime(startDate, "%Y-%m-%d") 
     endDate = request.GET['endDate']
-    end = datetime.datetime.strptime(endDate, "%Y-%m-%d") + datetime.timedelta(days=2)
+    end = datetime.datetime.strptime(endDate, "%Y-%m-%d") + datetime.timedelta(days=1)
 
 
    
