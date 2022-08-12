@@ -6,7 +6,7 @@ from django.db.models import Max, Min
 
 # Create your views here.
 def index(request):
-    obj = Dashboard.objects.get(id=1)
+    obj = Dashboard.objects.get(id=4)
     context = {
         'obj' : obj
     }

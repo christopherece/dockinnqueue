@@ -1,6 +1,5 @@
 from asyncore import write
 from multiprocessing import context
-from unittest import result
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db.models import Max, Q
@@ -16,24 +15,31 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from io import BytesIO
 from xhtml2pdf import pisa
-from datetime import date, datetime, timedelta
-
+import datetime
 
 from queues.models import Queue
+
+
 
 # Create your views here.
 @login_required(login_url='login')
 def generate_pdf(request):
 
-    startDate = request.GET.get('startDate')
-    endDate = request.GET.get('endDate')
+    startDate = request.GET['startDate']
+    start = datetime.datetime.strptime(startDate, "%Y-%m-%d") 
+    endDate = request.GET['endDate']
+    end = datetime.datetime.strptime(endDate, "%Y-%m-%d") + datetime.timedelta(days=2)
+
+
+   
     user = request.user.username
-    current_datetime = datetime.now()
-    reports = Queue.objects.filter(created__range=[startDate, endDate])
+    current_datetime = datetime.datetime.now().strftime('%Y-%m-%d')
+    reports = Queue.objects.filter(created__range=[start, end])
     context = {
         'reports':reports,
         'user':user,
-        'current_datetime':current_datetime
+        'current_datetime':current_datetime,
+        'startDate':startDate
         
     }
     html = render_to_string('accounts/report.html', context)
