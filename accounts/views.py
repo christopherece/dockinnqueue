@@ -70,7 +70,7 @@ def dashboard(request):
     hardwareCount = Queue.objects.filter(type__contains='hardware').count()
     softwareCount = Queue.objects.filter(type__contains='software').count()
     phoneCount = Queue.objects.filter(type__contains='phone').count()
-    accountCount = Queue.objects.filter(type__contains='account').count()
+    accountCount = Queue.objects.filter(type__contains='other').count()
 
     queueLists = Queue.objects.filter(technician__contains = request.user.username).values() | Queue.objects.filter(technician__startswith = 'Not Assigned').values()
     context = {
