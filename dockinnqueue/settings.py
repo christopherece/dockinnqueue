@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dockinndb',
         'USER': 'postgres',
-        'PASSWORD': '@dm!nL0c@lH0$t',
+        'PASSWORD': '011258',
         'HOST':'localhost'
     }
 }
