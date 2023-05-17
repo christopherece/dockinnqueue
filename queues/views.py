@@ -1,4 +1,3 @@
-from asyncore import write
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -13,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 
 
 from django.template.loader import render_to_string
-from io import BytesIO
 from xhtml2pdf import pisa
 import datetime
 
@@ -52,10 +50,19 @@ def generate_pdf(request):
 def updateticket(request, id):
     myqueue = Queue.objects.get(id=id)
     usersList = User.objects.all()
+    hardwareCount = Queue.objects.filter(type__contains='hardware').count()
+    softwareCount = Queue.objects.filter(type__contains='software').count()
+    phoneCount = Queue.objects.filter(type__contains='phone').count()
+    accountCount = Queue.objects.filter(type__contains='other').count()
 
     context = {
         'myqueue':myqueue,
-        'usersList':usersList
+        'usersList':usersList,
+        'hardwareCount':hardwareCount,
+        'softwareCount':softwareCount,
+        'phoneCount':phoneCount,
+        'accountCount':accountCount,
+
     }
     return render(request, 'dashboard/updateticket.html', context)
 

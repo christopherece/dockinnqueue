@@ -1,10 +1,11 @@
-import email
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from queues.models import Queue
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+
 
 # Create your views here.
 def register(request):
@@ -72,7 +73,9 @@ def dashboard(request):
     phoneCount = Queue.objects.filter(type__contains='phone').count()
     accountCount = Queue.objects.filter(type__contains='other').count()
 
-    queueLists = Queue.objects.filter(technician__contains = request.user.username).values() | Queue.objects.filter(technician__startswith = 'Not Assigned').values()
+    # queueLists = Queue.objects.filter(technician__contains = request.user.username).values() | Queue.objects.filter(technician__startswith = 'Not Assigned').values()
+    queueLists = Queue.objects.filter(Q(technician__icontains=request.user.username) | Q(technician__istartswith='Not Assigned')).values()
+
     context = {
         'queueLists': queueLists,
         'hardwareCount':hardwareCount,
