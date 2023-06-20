@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.10.152','localhost','10.226.151.39','dockinnqueue.balaydalakay.com','192.168.10.219']
 CSRF_TRUSTED_ORIGINS = [
-    'https://dockinnqueue.balaydalakay.com'
+    'https://dockinnq.balaydalakay.com'
 ]
 
 
