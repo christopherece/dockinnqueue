@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'dockinnqueue.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tbl_dockinn',
+        'NAME': 'dockinn_tbl',
         'USER': 'postgres',
         'PASSWORD': '!pass1234',
         'HOST':'192.168.10.225'
