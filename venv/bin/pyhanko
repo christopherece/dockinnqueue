@@ -1,4 +1,4 @@
-#!/home/meztroinhinyero/django/dockinnqueue/venv/bin/python3
+#!/home/admsrv/djangoapps/dockinnqueue/dockinnqueue/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

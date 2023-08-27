@@ -27,9 +27,9 @@ SECRET_KEY = 'django-insecure-6!&u@(!@oiy8b!%82#cnl-6go-*=*_eo2g$8(+-a)fiv-y1vl6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.10.152','localhost','dockinn.balaydalakay.com']
+ALLOWED_HOSTS = ['192.168.10.152','localhost','dockinnqueue.balaydalakay.com']
 CSRF_TRUSTED_ORIGINS = [
-    'https://dockinn.balaydalakay.com'
+    'https://dockinnqueue.balaydalakay.com'
 ]
 
 
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'dockinnqueue.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dockinn_tbl',
+        'NAME': 'dockinndb',
         'USER': 'postgres',
         'PASSWORD': '!pass1234',
         'HOST':'192.168.10.225'
