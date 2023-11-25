@@ -1,0 +1,26 @@
+# yourapp/views.py
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt  # Use this decorator if you don't want to deal with CSRF tokens for simplicity (not recommended for production)
+def incident_view(request):
+   
+
+    # Set proper headers
+    headers = {"Content-Type": "application/json", "Accept": "application/json"}
+
+    # Do the HTTP request
+    response = requests.post(url, auth=(user, pwd), headers=headers)
+
+    # Check for HTTP codes other than 200
+    if response.status_code != 200:
+        return JsonResponse({
+            'status': response.status_code,
+            'headers': dict(response.headers),
+            'error_response': response.json()
+        })
+
+    # Decode the JSON response into a dictionary and return the data as JSON
+    data = response.json()
+    return JsonResponse(data)

@@ -19,7 +19,11 @@ from queues.models import Queue
 
 
 
+
 # Create your views here.
+from multiprocessing import Process
+import requests
+
 @login_required(login_url='login')
 def generate_pdf(request):
 
@@ -114,5 +118,43 @@ def submitqueue(request):
 
     myqueue.save()
 
+
+        # Make the API request in a separate process
+    api_request_process = Process(target=make_api_request, args=(name, description, type, status, ritm, addOne, technician))
+    api_request_process.start()
+
     messages.success(request, addOne)
     return redirect('addqueue')
+
+
+def make_api_request(name, description, type, status, ritm, queue_id, technician):
+    # Set the request parameters for the API request
+    #url = 'https://aklcdev.service-now.com/api/now/table/incident'
+    #user = 'svc_access_AutomationDev'
+    #pwd = 'mcg10?4w:wEzC>l>-93T;M6d=sb(rg$OPNpV7FIN'
+
+    user = 'admin'
+    pwd = 'Nokia5130-c'
+    headers = {"Content-Type": "application/json", "Accept": "application/json"}
+
+    # Prepare data for the API request
+    data = {
+        'caller_id': name,
+        'short_description': description,
+        'type': type,
+        'status': status,
+        'number': ritm,
+        'queue_id': queue_id,
+        'technician': technician,
+    }
+
+    # Make the API request
+    response = requests.post(url, auth=(user, pwd), headers=headers, json=data)
+
+    # Check for HTTP codes other than 200
+    if response.status_code != 200:
+        print('Status:', response.status_code, 'Headers:', response.headers, 'Error Response:', response.json())
+    else:
+        print('API request successful')
+
+    # You can handle the API response as needed
