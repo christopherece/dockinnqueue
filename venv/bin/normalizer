@@ -1,4 +1,4 @@
-#!/home/admsrv/pyapps/dockinnqueue/venv/bin/python3
+#!/home/admsrv/django_apps/dockinnqueue/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

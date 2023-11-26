@@ -1,4 +1,4 @@
-from multiprocessing import context
+from multiprocessing import Process, Queue as MultiProcessQueue
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db.models import Max, Q
@@ -88,6 +88,7 @@ def addqueue(request):
     return render(request, 'dashboard/queue.html')
 
 def submitqueue(request):
+    
     queueIdMax = 0
 
     if request.method == 'POST':
@@ -95,8 +96,8 @@ def submitqueue(request):
         description = request.POST['description']
         type = request.POST['type']
         status = request.POST['status']
-        ritm = request.POST['ritm']
         technician = request.POST['technician']
+
 
         if Queue.objects.exists():
             queueList = Queue.objects.filter(status='Active').count()
@@ -106,30 +107,29 @@ def submitqueue(request):
         else:
             addOne = 1
 
+    
+    #api_request_process = Process(target=make_api_request, args=(name,description))
+    incNumber = make_api_request(name, description)
+
     myqueue = Queue(
         name = name,
         description = description,
         type = type,
         status = status,
-        ritm = 'RITM'+ritm,
+        ritm = incNumber,
         queue_id = addOne,
         technician = technician,
     )
 
     myqueue.save()
 
-
-        # Make the API request in a separate process
-    api_request_process = Process(target=make_api_request, args=(name, description, type, status, ritm, addOne, technician))
-    api_request_process.start()
-
     messages.success(request, addOne)
     return redirect('addqueue')
 
 
-def make_api_request(name, description, type, status, ritm, queue_id, technician):
+def make_api_request(name,description):
     # Set the request parameters for the API request
-    #url = 'https://aklcdev.service-now.com/api/now/table/incident'
+    url = 'https://dev185867.service-now.com/api/now/table/incident'
     #user = 'svc_access_AutomationDev'
     #pwd = 'mcg10?4w:wEzC>l>-93T;M6d=sb(rg$OPNpV7FIN'
 
@@ -137,24 +137,20 @@ def make_api_request(name, description, type, status, ritm, queue_id, technician
     pwd = 'Nokia5130-c'
     headers = {"Content-Type": "application/json", "Accept": "application/json"}
 
-    # Prepare data for the API request
+    #Prepare data for the API request
     data = {
         'caller_id': name,
         'short_description': description,
-        'type': type,
-        'status': status,
-        'number': ritm,
-        'queue_id': queue_id,
-        'technician': technician,
+
     }
 
     # Make the API request
     response = requests.post(url, auth=(user, pwd), headers=headers, json=data)
+    response_data = response.json()
+    result_data = response_data.get('result', {})
+    api_response_number = result_data.get('number')
+    
+    #print(api_response_number)
+    return api_response_number
 
-    # Check for HTTP codes other than 200
-    if response.status_code != 200:
-        print('Status:', response.status_code, 'Headers:', response.headers, 'Error Response:', response.json())
-    else:
-        print('API request successful')
-
-    # You can handle the API response as needed
+    
